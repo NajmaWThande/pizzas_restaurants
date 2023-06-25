@@ -14,6 +14,20 @@ class RestaurantPizzasController < ApplicationController
       restaurantpizza.destroy
       render json: restaurantpizza, status: :ok
     end
+
+    def index 
+      restaurantpizza = RestaurantPizza.all
+      render json: restaurantpizza
+  end
+
+  def show
+    restaurantpizza = RestaurantPizza.find_by(id: params[:id])
+    if restaurantpizza
+      render json: restaurantpizza
+    else
+      render json: { error: 'Restaurant not found' }, status: :not_found
+    end
+  end
   
     private
   
