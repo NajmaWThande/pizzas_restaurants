@@ -76,3 +76,108 @@ FOREIGN KEY ("pizza_id")
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
   [1m[36mRestaurantPizza Create (0.2ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("restaurant_id", "pizza_id", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["restaurant_id", 1], ["pizza_id", 2], ["price", 12], ["created_at", "2023-06-25 11:51:51.511249"], ["updated_at", "2023-06-25 11:51:51.511249"]]
   [1m[36mTRANSACTION (10.9ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2023-06-25 19:49:02 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering Documents/Moringa/De/ruby/3.2.0/gems/railties-7.0.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered Documents/Moringa/De/ruby/3.2.0/gems/railties-7.0.5/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.5ms | Allocations: 633)
+Completed 200 OK in 16ms (Views: 5.7ms | ActiveRecord: 0.0ms | Allocations: 7147)
+
+
+Started GET "/" for 127.0.0.1 at 2023-06-25 19:49:15 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering Documents/Moringa/De/ruby/3.2.0/gems/railties-7.0.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered Documents/Moringa/De/ruby/3.2.0/gems/railties-7.0.5/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | Allocations: 272)
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.0ms | Allocations: 881)
+
+
+Started GET "/" for 127.0.0.1 at 2023-06-25 19:59:19 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as */*
+  Rendering Documents/Moringa/De/ruby/3.2.0/gems/railties-7.0.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered Documents/Moringa/De/ruby/3.2.0/gems/railties-7.0.5/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.8ms | Allocations: 491)
+Completed 200 OK in 16ms (Views: 8.4ms | ActiveRecord: 0.0ms | Allocations: 4116)
+
+
+Started GET "/restaurants" for 127.0.0.1 at 2023-06-25 19:59:59 +0300
+Processing by RestaurantsController#index as */*
+  [1m[36mRestaurant Load (2.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants"[0m
+  ↳ app/controllers/restaurants_controller.rb:4:in `index'
+Completed 200 OK in 20ms (Views: 8.6ms | ActiveRecord: 3.1ms | Allocations: 7646)
+
+
+Started DELETE "/restaurants/1" for 127.0.0.1 at 2023-06-25 20:00:48 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mRestaurant Load (0.9ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:18:in `destroy'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+  [1m[36mRestaurant Destroy (3.4ms)[0m  [1m[31mDELETE FROM "restaurants" WHERE "restaurants"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+Completed 500 Internal Server Error in 135ms (ActiveRecord: 5.5ms | Allocations: 4833)
+
+
+  
+ActiveRecord::InvalidForeignKey (SQLite3::ConstraintException: FOREIGN KEY constraint failed):
+  
+app/controllers/restaurants_controller.rb:21:in `destroy'
+Started GET "/pizzas" for 127.0.0.1 at 2023-06-25 20:01:36 +0300
+Processing by PizzasController#index as */*
+  [1m[36mPizza Load (1.0ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas"[0m
+  ↳ app/controllers/pizzas_controller.rb:4:in `index'
+Completed 200 OK in 24ms (Views: 14.8ms | ActiveRecord: 1.7ms | Allocations: 4556)
+
+
+Started DELETE "/pizzas/1" for 127.0.0.1 at 2023-06-25 20:01:56 +0300
+  
+ActionController::RoutingError (No route matches [DELETE] "/pizzas/1"):
+  
+Started POST "/restaurant_pizzas" for 127.0.0.1 at 2023-06-25 20:06:56 +0300
+Processing by RestaurantPizzasController#create as */*
+  Parameters: {"price"=>5, "pizza_id"=>1, "restaurant_id"=>3, "restaurant_pizza"=>{"restaurant_id"=>3, "pizza_id"=>1, "price"=>5}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+  [1m[36mRestaurant Load (0.2ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+  [1m[36mPizza Load (0.5ms)[0m  [1m[34mSELECT "pizzas".* FROM "pizzas" WHERE "pizzas"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+  [1m[36mRestaurantPizza Create (0.6ms)[0m  [1m[32mINSERT INTO "restaurant_pizzas" ("restaurant_id", "pizza_id", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["restaurant_id", 3], ["pizza_id", 1], ["price", 5], ["created_at", "2023-06-25 17:06:56.266891"], ["updated_at", "2023-06-25 17:06:56.266891"]]
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (23.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/restaurant_pizzas_controller.rb:5:in `create'
+Completed 200 OK in 66ms (Views: 1.0ms | ActiveRecord: 27.1ms | Allocations: 10991)
+
+
+Started DELETE "/restaurant_pizzas/1" for 127.0.0.1 at 2023-06-25 20:12:23 +0300
+  
+ActionController::RoutingError (No route matches [DELETE] "/restaurant_pizzas/1"):
+  
+Started DELETE "/restaurant_pizzas/1" for 127.0.0.1 at 2023-06-25 20:13:30 +0300
+  
+ActionController::RoutingError (No route matches [DELETE] "/restaurant_pizzas/1"):
+  
+Started DELETE "/restaurant/1" for 127.0.0.1 at 2023-06-25 20:14:36 +0300
+  
+ActionController::RoutingError (No route matches [DELETE] "/restaurant/1"):
+  
+Started DELETE "/restaurants/1" for 127.0.0.1 at 2023-06-25 20:14:50 +0300
+Processing by RestaurantsController#destroy as */*
+  Parameters: {"price"=>5, "pizza_id"=>1, "restaurant_id"=>3, "id"=>"1", "restaurant"=>{}}
+  [1m[36mRestaurant Load (0.9ms)[0m  [1m[34mSELECT "restaurants".* FROM "restaurants" WHERE "restaurants"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/restaurants_controller.rb:18:in `destroy'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+  [1m[36mRestaurant Destroy (2.5ms)[0m  [1m[31mDELETE FROM "restaurants" WHERE "restaurants"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/restaurants_controller.rb:21:in `destroy'
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 4.7ms | Allocations: 3570)
+
+
+  
+ActiveRecord::InvalidForeignKey (SQLite3::ConstraintException: FOREIGN KEY constraint failed):
+  
+app/controllers/restaurants_controller.rb:21:in `destroy'
